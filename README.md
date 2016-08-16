@@ -6,7 +6,7 @@ Hockeyver is ruby utility that outputs the version number of the latest build on
 
 ### Add our private gem source if you haven't done before
 ~~~
-gem sources -a http://gems.nodesmanager.io
+gem sources -a (ASK JONAS FOR THE URL)
 ~~~
 
 ### Install using gem
