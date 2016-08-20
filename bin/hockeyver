@@ -1,4 +1,49 @@
 #!/usr/bin/env ruby
 
 require 'hockeyver'
-puts Hola.hi(ARGV[0], ARGV[1])
+require 'optparse'
+
+# Setup required configuration
+Configuration = Struct.new(:app_id, :token)
+config = Configuration.new(nil, nil)
+
+# Parse options
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: hockeyver [options]"
+  opts.separator ""
+  opts.separator "Outputs the version number of the latest build on Hockey based on the provided Hockey ID and token."
+  opts.separator ""
+  opts.separator "Specific options:"
+
+  opts.on("-i", "--app_id APP_IDENTIFIER", "HockeyApp app identifier of the app you want to check version of. (required)") do |identifier|
+    config.app_id = identifier
+  end
+
+  opts.on("-t", "--token API_TOKEN", "HockeyApp API token which will be used to connect. (required)") do |token|
+    config.token = token
+  end
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+end
+parser.parse!
+
+# Safety checks
+if config.app_id.nil?
+  puts "ERROR: You need to provide an app identifier. \n\n"
+  puts parser.help
+  exit 1
+end
+
+if config.token.nil?
+  puts "ERROR: You need to provide an API token. \n\n"
+  puts parser.help
+  exit 1
+end
+
+# Run the hockey version parser
+result = HockeyVer.parse_hockey_version config.app_id, config.token
+puts result unless result.nil?
+exit (result.nil? ? 1 : 0)
