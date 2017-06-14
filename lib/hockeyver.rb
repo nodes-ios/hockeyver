@@ -20,7 +20,7 @@ module HockeyVer
     begin
       # If found, return version
       latest = json["app_versions"].first
-      return(latest["version"])
+      return { "version" => latest["shortversion"], "build" => latest["version"] }
     rescue Exception
       # Error out and return nil otherwise
       puts("Error while parsing hockey ver JSON. ", json)
