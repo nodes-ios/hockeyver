@@ -13,10 +13,10 @@ Gem::Specification.new do |spec|
 
   spec.files        = ["lib/hockeyver.rb", "lib/hockeyver/version.rb"]
   spec.authors      = ['Kasper Welner', 'Dominik Hadl']
-  spec.description  = %q{Outputs the version number of the latest build on Hockey based on the provided Hockey ID and token.}
+  spec.description  = %q{Outputs the version and build number of the latest build on Hockey based on the provided Hockey ID and token.}
   spec.email        = ['iphone@nodes.dk']
   spec.name         = 'hockeyver'
-  spec.summary      = %q{Outputs the version number of of latest build on Hockey}
+  spec.summary      = %q{Outputs the version and build number of of latest build on Hockey.}
   spec.version      = HockeyVer::VERSION
   spec.homepage     ='http://nodes.dk'
   spec.license      = 'MIT'
